@@ -10,15 +10,10 @@ namespace TextFilterApp
     {
         private readonly List<ITextFilter> _filters;
 
-        public TextFilter()
+        public TextFilter(IEnumerable<ITextFilter> filters)
         {
             // Add filters to the list
-            _filters = new List<ITextFilter>
-            {
-                new TextFilterVowel(),
-                new TextFilterLength(),
-                new TextFilterLetter()
-            };
+            _filters = filters.ToList();
         }
 
         public string ApplyFilters(string input)

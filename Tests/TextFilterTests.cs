@@ -36,7 +36,13 @@ namespace Tests
         [Test]
         public void TestApplyFilters_ShouldApplyAllFilters()
         {
-            var app = new TextFilter();
+            var filters = new List<ITextFilter>
+            {
+                new TextFilterVowel(),
+                new TextFilterLength(),
+                new TextFilterLetter()
+            };
+            var app = new TextFilter(filters);
             string input = "image once better";
             string result = app.ApplyFilters(input);
             Assert.AreEqual("once", result); // After all filters
